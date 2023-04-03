@@ -1,0 +1,234 @@
+package com.example.demo;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.MessageSource;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+//import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.example.demo.controllers.EmployeeController;
+import com.example.demo.domains.Employee;
+import com.example.demo.repositories.EmployeeRepo;
+import com.example.demo.services.EmployeeServiceImpl;
+
+
+
+// import static org.assertj.core.api.Assertions.assertThat;
+// import static org.mockito.BDDMockito.given;
+// import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+// import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+// //import com.example.AppConfig;
+// import com.example.demo.controllers.EmployeeController;
+// import com.example.demo.domains.Employee;
+// import com.example.demo.repositories.EmployeeRepo;
+// import com.example.demo.services.EmployeeServiceImpl;
+// import com.fasterxml.jackson.databind.ObjectMapper;
+// // import com.packt.modern.api.AppConfig;
+// // import com.packt.modern.api.entity.ShipmentEntity;
+// // import com.packt.modern.api.exception.RestApiErrorHandler;
+// // import com.packt.modern.api.hateoas.ShipmentRepresentationModelAssembler;
+// // import com.packt.modern.api.model.Shipment;
+// // import com.packt.modern.api.service.ShipmentService;
+// import java.sql.Timestamp;
+// import java.time.Instant;
+// import java.util.List;
+// import java.util.Optional;
+// import java.util.UUID;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.DisplayName;
+// import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.extension.ExtendWith;
+// import org.mockito.InjectMocks;
+// import org.mockito.Mock;
+// import org.mockito.junit.jupiter.MockitoExtension;
+// import org.springframework.beans.BeanUtils;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+// import org.springframework.boot.test.json.JacksonTester;
+// import org.springframework.boot.test.mock.mockito.MockBean;
+// import org.springframework.context.MessageSource;
+// import org.springframework.context.annotation.Import;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.MediaType;
+// import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+// import org.springframework.mock.web.MockHttpServletResponse;
+// import org.springframework.test.context.ContextConfiguration;
+// import org.springframework.test.context.junit4.SpringRunner;
+// import org.springframework.test.web.servlet.MockMvc;
+// import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+// import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+// import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+//@ExtendWith(MockitoExtension.class)
+
+// @ContextConfiguration(
+//     classes = [TestConfigs::class]
+// )
+//@Import(EmployeeController.class)
+
+//@ContextConfiguration(classes = {EmployeeControllerTest.class})
+//@WebMvcTest
+
+//@ExtendWith(SpringRunner.class)
+// @ExtendWith(MockitoExtension.class)
+// @WebMvcTest(EmployeeController.class)
+
+
+
+// //@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class) 
+@WebMvcTest(value =EmployeeController.class)
+@WithMockUser
+public  class EmployeeControllerTest {
+
+  //private static final String id = "a1b9b31d-e73c-4112-af7c-b68530f38222";
+  private static final Long id =256504L;
+  @Autowired
+  private MockMvc mockMvc;
+
+  //@Mock
+  //@Autowired
+   @Mock
+   EmployeeRepo employeeRepo;
+   @MockBean
+   private EmployeeServiceImpl service;
+
+   Employee mockEmployee = new Employee() ;
+   
+   //(1L,"n1", "l1", "a@a",BigDecimal.valueOf(1),10.0,1,1,null,null,null);
+
+/*
+         this.employee_id = employee_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.salary = salary;
+        this.total_work_percentage = total_work_percentage;
+        this.membership_count = membership_count;
+        this.department_id = department_id;
+        this.projects = projects;
+        this.coordinator_tasks = coordinator_tasks;
+        this.tasks = tasks; 
+ 
+ * 
+ */
+
+
+			//Arrays.asList("Learn Maven", "Import Project", "First Example", "Second Example"));
+
+
+//   @Mock
+//   private MessageSource msgSource;
+
+// @Mock
+// private EmployeeController controller;
+
+// private Employee entity;
+// private JacksonTester<List<Employee>> jacksonTesterEmployee;
+// private Employee model = new Employee();
+
+
+  @BeforeEach
+  public void setup() {
+
+    mockEmployee.salary(BigDecimal.valueOf(100.0));
+    mockEmployee.setEmail("a@a");
+    mockEmployee.setEmployee_id(1L);
+    mockEmployee.setFirst_name("f1");
+    mockEmployee.setLast_name("l1");
+    mockEmployee.setMembership_count(1L);
+    mockEmployee.setTotal_work_percentage(1);
+    // ObjectMapper mapper = new AppConfig().objectMapper();
+    // JacksonTester.initFields(this, mapper);
+    // MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new
+    //     MappingJackson2HttpMessageConverter();
+   // mappingJackson2HttpMessageConverter.setObjectMapper(mapper);
+    // mockMvc = MockMvcBuilders.standaloneSetup(controller)
+    //     // .setControllerAdvice(new com.example.demo.exceptions.RestApiErrorHandler(msgSource))
+    //     // .setMessageConverters(mappingJackson2HttpMessageConverter)
+    //     .alwaysDo(print())
+    //     .build();
+
+    // final Instant now = Instant.now();
+    // entity = new Employee();
+    // entity.setEmployee_id(1L ); //256504L);
+    // entity.setEmail("a@a");
+    // entity.setDepartment_id(1000L);
+    // entity.setFirst_name("pippo1");
+    // entity.setLast_name("last_name1");
+    // BeanUtils.copyProperties(entity, model);
+    // model.setEmployee_id(entity.getEmployee_id());
+    //model.setEstDeliveryDate(entity.getEstDeliveryDate().toLocalDateTime().toLocalDate());
+  }
+
+  @Test
+  //@DisplayName("ciao")
+  public void bo() throws Exception {
+    // given
+    // given(service.getShipmentByOrderId(id))
+    //     .willReturn(List.of(entity));
+    // given(assembler.toListModel(List.of(entity)))
+    //     .willReturn(List.of(model));
+    // System.out.println(id);
+    // System.out.println(employeeRepo.hashCode());
+    // entity= new Employee();
+    // given(employeeRepo.findById(id)).willReturn(Optional.of(entity));
+    // Optional<Employee> result = service.findById(id);
+
+    // when  + id)//      get("http://localhost:8099/api/employee/256504")
+    // MockHttpServletResponse response = mockMvc.perform(
+
+    //   get("http://localhost:8099/api/employee/256504")
+    //   .contentType(MediaType.APPLICATION_JSON)
+    //         .accept(MediaType.APPLICATION_JSON))
+    //     .andDo(print())
+    //     .andReturn().getResponse();
+
+    // mockMvc.perform(MockMvcRequestBuilders
+  	// 		.get("/apy/employees")
+  	// 		.accept(org.springframework.http.MediaType.APPLICATION_JSON))
+    //   //.andDo(print())
+    //   //.andExpect(status().isOk())
+    //   .andExpect(MockMvcResultMatchers.jsonPath("$.employees").exists())
+    //   .andExpect(MockMvcResultMatchers.jsonPath("$.employees[*].employeeId").isNotEmpty());
+    // // then
+
+    // assertThat(result).isNotNull();
+    // assertThat(result).isNotEmpty();
+    // assertThat(result.get()).isEqualTo(entity);
+    //assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    // assertThat(response.getContentAsString())
+    //     .isEqualTo(jacksonTesterEmployee.write(List.of(model)).getJson());
+//https://www.springboottutorial.com/unit-testing-for-spring-boot-rest-services
+    Mockito.when(employeeRepo.findById(1L)).thenReturn(Optional.of(mockEmployee));
+    
+    RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+      "/api/employee").accept(
+      MediaType.APPLICATION_JSON);
+
+  MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+  MockHttpServletResponse r= result.getResponse();  
+  System.out.println(result.getResponse());
+  }
+}

@@ -1,0 +1,88 @@
+package com.example.demo;
+
+import java.util.*;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.example.DemoApplication;
+import com.example.demo.controllers.EmployeeController;
+import com.example.demo.domains.Employee;
+import com.example.demo.repositories.EmployeeRepo;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.hamcrest.Matchers.*;
+
+@AutoConfigureMockMvc
+
+@WebMvcTest(EmployeeController.class)
+// @ContextConfiguration(classes = {EmployeeController.class})
+// @WebMvcTest
+public class ControllerEmployeeTest {
+
+   // @Autowired
+   // MockMvc mockMvc;
+   // // @Autowired
+   // // ObjectMapper mapper;
+
+   // @MockBean
+   // EmployeeRepo employeeRepo;
+
+   @MockBean
+   EmployeeController employeeController;
+    @MockBean
+    EmployeeServiceImpl employeeService;
+
+   @Test
+   public void getAllRecords_success() throws Exception {
+      // List<Employee> records = new ArrayList<>();
+
+      // Mockito.when(employeeRepo.findAll())
+      // .thenReturn(records);
+
+      // mockMvc.perform(MockMvcRequestBuilders
+      // .get("/api/employee")
+      // .contentType(MediaType.APPLICATION_JSON))
+      // .andExpect(status().isOk());
+
+      // .andExpect(jsonPath("$", hasSize(3)))
+      // .andExpect(jsonPath("$[2].name", is("Jane Doe")));
+
+      // this.mockMvc
+      // .perform(MockMvcRequestBuilders.get("http://localhost:8099/api/employee"))
+      // .andExpect(MockMvcResultMatchers.status().isOk())
+      // .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(48)) ;
+      // }
+
+      // Mockito.when(employeeService.findById(Mockito.anyString(),
+      // Mockito.anyString())).thenReturn(mockCourse);
+
+      // RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+      //       "/api/employee").accept(
+      //             MediaType.APPLICATION_JSON);
+
+      // MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+      // System.out.println(result.getResponse());
+      System.err.println("fine");
+   }
+
+}

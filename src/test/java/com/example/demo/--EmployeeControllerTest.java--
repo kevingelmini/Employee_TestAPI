@@ -1,0 +1,49 @@
+package com.example.demo;
+
+import java.time.Instant;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.BeanUtils;
+import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.example.demo.controllers.EmployeeController;
+import com.example.demo.domains.Employee;
+import com.example.demo.exceptions.RestApiErrorHandler;
+import com.example.demo.services.EmployeeService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@ExtendWith(MockitoExtension.class)
+public class EmployeeControllerTest {
+    private MockMvc mockMvc;
+    @Mock
+    private EmployeeService employeeService;
+
+    @InjectMocks
+    private EmployeeController employeeController;
+    private Employee employee;
+    private JacksonTester<List<Employee>> jacksonTesterEmployee;
+
+    @BeforeEach
+    public void setup() {
+        ObjectMapper mapper = new AppConfig().objectMapper();
+        JacksonTester.initFields(this, mapper);
+        MappingJackson2HttpMessageConverter mappingConverter = new MappingJackson2HttpMessageConverter();
+        mappingConverter.setObjectMapper(mapper);
+        mockMvc = MockMvcBuilders.standaloneSetup(employeeController)
+                .setControllerAdvice(new RestApiErrorHandler(msgSource))
+                .setMessageConverters(mappingConverter)
+                .build();
+        final Instant now = Instant.now();
+        employee = // entity initialization code
+                BeanUtils.copyProperties(employee, model);
+        // extra model property initialization
+    }
+}

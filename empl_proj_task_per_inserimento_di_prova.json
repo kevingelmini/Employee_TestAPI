@@ -1,0 +1,38 @@
+{
+  "employee_id": 1,
+  "first_name": "satring",
+  "last_name": "strwwing",
+  "email": "string@a",
+  "salary": 1,
+  "total_work_percentage": 1,
+  "membership_count": 1,
+  "department_id": 1000
+}
+
+
+
+{
+  "project_id": 9999,
+  "project_name": "gfgfg",
+  "project_status": "S",
+  "project_start_date": "2016-06-07",
+  "project_end_date": "2016-12-30",
+  "leader": {
+    "employee_id": 587191
+  }
+}
+
+
+{
+  "task_id": 9999,
+  "task_name": "string",
+  "task_status": "s",
+  "project": {
+    "project_id": 2001
+  },
+  "task_start_date": "2023-03-23",
+  "task_end_date": "2023-03-23",
+  "coordinator": {
+    "employee_id": 442461
+  }
+}
